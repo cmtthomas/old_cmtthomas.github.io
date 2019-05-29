@@ -7,9 +7,45 @@
   <a href="budgetbuild.html" target=_blank> Budget Computer</a>
   <a href="dreambuild.html" target=_blank> Dream Computer</a>
   <a href="https://docs.google.com/presentation/d/12GsfeZ80mnMgABtlRJdRl_MEzbkn_9aV2DYgafu1-AU/edit?usp=sharing" target=_blank> EOY Presentation</a>
-  <a href="HAB.html" target=_blank> HAB Cut Down</a>   
-</div> 
-  
-  <H1> Testing... </H1>
+  <a href="HAB.html" target=_blank> HAB Cut Down</a>
+</div>
+
+  <H1> HAB Cutdown System </H1>
+  <p> High altitude ballooning is a fun and educational activity, but there is always a risk of equiptment loss. Shifting winds in the jetstream and innaccuracies in the ammount of <br>
+      helium in the balloon can cause the unit to drift further than expected, sometimes for hundereds of miles. Such shifts can make recovery impossible, either by drifting so far that <br>
+      the balloon would require too great an investment in time to recover, or by depositing the balloon in terrain that is not navigible. To solve this problem, I have developed an affordible,<br>
+      Arduino based device to cut down the balloon if it strays too far from home. I used a previous project from <a href="https://bovineaerospace.wordpress.com/2013/06/05/balloon-cutdown/" target=_blank> Bovine Aerospace</a>  as a template,
+      but I changed the code to meet my needs. </p>
+
+  <H2> Schematics</H2>
+  <img src="img/schematics.png" px="" alt="stock circuit" height="250">
+  <p>The above image shows the schematics for the cutdown circuit provided by Bovine Aerospace. The program running on the Arduino triggers a signal on pin 12, which then activates the transistor. <br>
+     The transistor then sends a 5v pulse to the relay, pulling from the Arduino's 5v rail instead of from pin 12. This prevents accidently drawing more current than the Arduino can provide, since <br>
+     the digital output pins have a lower current rating than the designated power rails. The relay then completes the cut down circuit, sending a 9v pulse through a nichrome wire to <br>
+    melt through the balloon line. Because of the local environment, my instructor and I chose to use a one time use clip containing a nichrome filliment instead of bare wire like Bovine used.<br>
+    Where I live there are a lot of fields containing dry grass that are quite flammable, even in the spring. The one time use clips destroy themselves after cutting through the line, then sever <br>
+    the nichrome wire. This prevents the wire from landing in a field while hot; possibly starting a grass fire. The circuit works well, but the Arduino can exhibit unexpected behavior while the cut down is in progress. <br>
+    After consultation with an electrical engineer, he reccomended that I separate the ground planes for the arduino and the cut down circuit.
+   </p>
+
+   <H2> Prototyping </H2>
+   <p> After finding a sample project that looked promising, the first step was prototyping. Using a breadboard I wired the transistor and relay. I temporarily ignored the cut down circuit and waited until after the relay and <br>
+     transistor were working as expected. The pictures below show the layout that I used. <br>
+     <img src="img/relay.jpg" px="" alt="stock circuit" height="450">
+      <img src="img/transistor.jpg" px="" alt="stock circuit" height="450">
+      <img src="img/workbench.jpg" px="" alt="stock circuit" height="450"> <br>
+
+      This isn't the most space efficient way of setting this circuit up, but I didn't feel the need to perfect the layout in the prototyping stage.
+   </p>
+
+   <H2> Soldering </H2>
+   <p> Then came the fun part - soldering. Once the prototype was functional on the breadboard, I set up my workstation and got to work. Since I used perfboard that had the same trace pattern as a breadboard, I simply copied the <br>
+     prototype layout to the perfboard. I did make an effort to condense the design though, and the switching components are confined to their own area of the board. The footprint could still be reduced further, but I wanted space <br>
+     to tape batteries and other components. This makes it easier on launch day because the entire circuit and battery system is self-contained and mounted on its own backboard. For me this process was uneventful, but watch out for <br>
+     solder bridges if using the breadboard style perfboard. It is very easy to accidently connect traces on the board with solder blobs that are too large.
+   </p>
+
+   <H2> Code </H2>
+
   </body>
 </html>
