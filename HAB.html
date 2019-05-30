@@ -18,7 +18,7 @@
       but I changed the code to meet my needs. </p>
 
   <H2> Schematics</H2>
-  <img src="img/schematics.png" px="" alt="stock circuit" height="250">
+  <img src="img/cutdown_circuit.png" px="" alt="stock circuit" height="250">
   <p>The above image shows the schematics for the cutdown circuit provided by Bovine Aerospace. The program running on the Arduino triggers a signal on pin 12, which then activates the transistor. <br>
      The transistor then sends a 5v pulse to the relay, pulling from the Arduino's 5v rail instead of from pin 12. This prevents accidently drawing more current than the Arduino can provide, since <br>
      the digital output pins have a lower current rating than the designated power rails. The relay then completes the cut down circuit, sending a 9v pulse through a nichrome wire to <br>
