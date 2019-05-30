@@ -18,7 +18,7 @@
       but I changed the code to meet my needs. </p>
 
   <H2> Schematics</H2>
-  <img src="img/cutdown_circuit.png" px="" alt="stock circuit" height="250">
+  <img src="img/schematics.png" px="" alt="stock circuit" height="250">
   <p>The above image shows the schematics for the cutdown circuit provided by Bovine Aerospace. The program running on the Arduino triggers a signal on pin 12, which then activates the transistor. <br>
      The transistor then sends a 5v pulse to the relay, pulling from the Arduino's 5v rail instead of from pin 12. This prevents accidently drawing more current than the Arduino can provide, since <br>
      the digital output pins have a lower current rating than the designated power rails. The relay then completes the cut down circuit, sending a 9v pulse through a nichrome wire to <br>
@@ -46,6 +46,26 @@
    </p>
 
    <H2> Code </H2>
+   <p> After testing and making sure that the hardware functioned as intended, the next hurdle to surmount was the code. Bovine provided a wonderful template, but unfortunately his system only used altitude to determine when to cut <br>
+     down the balloon. That wasn't terribly helpful for my needs, since I wanted to constrain the balloon to a particular geographic area. Because of the pressure differential between the helium inside the balloon and the air outside, <br>
+     the balloon will destroy itself once it gets too high anyway. The final sketch that I produced is located <a href="https://github.com/cmtthomas/hardware/blob/master/HAB/Custom_Cutdown_Code.ino"> here.</a> Please note that the sketch
+     does not currently exhibit the desired behavior and is not usable in its current form. <br> The code simply pulls position data from the GPS module, in this case the Adafruit Ultimate GPS, and then compares it to end points defined
+     in the program. These points are contained in the if statements at the bottom of the code. <br>
+     It is important to note that the code uses Decimal Degrees, not Degree, minutes seconds for coordinates. When using this code you need to first convert your desired endpoints to decimal degrees. My preferred calculator is found
+     <a href="https://www.fcc.gov/media/radio/dms-decimal"> here.</a> <br>
+     Despite how things may appear, you cannot simply concatenate the minutes and seconds and place them behind the degrees followed by a decimal point. This will result in a variance of +/- 30 miles in your cutdown location -<br>
+     somewhat less than ideal. As long as the coordinates are converted correctly, you can expect to see accuracies of +/- 2 to 3 meters. This is what I experienced during testing and is more than accurate enough for a weather balloon. <br>
+   </p>
+
+   <H2> Final Assembly and Field Test</H2>
+   <p> At this point, everything was assembled and was ready to be integrated into the payload. Since it is quite cold at 35,000 meters, I needed some way of ensuring thermal stability at altitude. The batteries will rapidly loose <br>
+     their charge when they are cold and the Arduino is only rated to function down to -40 degreees Celsius. Since the average temperature at 35,000 meters is -50 degres Celsius, we have a small problem. In the future a 3d printed, <br>
+     weatherproof enclosure will be developed, but due to time constraints the enclosure will not be ready for this launch. Due to these constraints, I chose closed cell foam as my alternative material. Conveniently my teacher happened <br>
+     to have an adequately sized box already formed, I just had to do a little bit of surgery to shorten the box so that it fit in the payload. The current enclosure has space for the cut down board, the Arduino, the GPS module, and 2 9v <br>
+     batteries. On the lid, the payload team secured the flight computer and the SPOT survival GPS tracker that we use to find the balloon after it has landed. Even though the case isn't as convenient as the 3d printed unit will be, all <br>
+     of the avionics are secured to a singlular, easily removable package. Since the case is made of foam, it should have enough insulation to keep the internal temperature from dropping to truly concerning levels.
+  </p>
 
   </body>
 </html>
+
